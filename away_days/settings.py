@@ -44,6 +44,7 @@ CSRF_TRUSTED_ORIGINS = [
     ]
 
 LOGIN_REDIRECT_URL = '/reviews/' 
+LOGOUT_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [

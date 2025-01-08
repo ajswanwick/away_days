@@ -39,3 +39,11 @@ body {
 #id_comments.form-control{
   width: 100%
 }
+
+#id_username.form-control{
+  width: 100%
+}
+
+#id_password.form-control{
+  width: 100%
+}
