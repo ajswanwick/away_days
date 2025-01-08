@@ -7,27 +7,73 @@ from django.contrib.auth.models import User
 
 class Review(models.Model):
     
-    
     TeamsChoices = (
-        ('Arsenal', 'Arsenal'),
-        ('Villa', 'Aston Villa'),
-        ('Bouremouth', 'Bournemouth'),
+         ('Arsenal', 'Arsenal'),
+        ('Aston Villa', 'Aston Villa'),
+        ('Barnsley', 'Barnsley'),
+        ('Birmingham City', 'Birmingham City'),
+        ('Blackburn Rovers', 'Blackburn Rovers'),
+        ('Blackpool', 'Blackpool'),
+        ('Bolton Wanderers', 'Bolton Wanderers'),
+        ('Bournemouth', 'Bournemouth'),
         ('Brentford', 'Brentford'),
-        ('Brighton', 'Brighton'),
+        ('Brighton & Hove Albion', 'Brighton & Hove Albion'),
+        ('Bristol City', 'Bristol City'),
+        ('Burnley', 'Burnley'),
+        ('Burton Albion', 'Burton Albion'),
+        ('Cambridge United', 'Cambridge United'),
+        ('Cardiff City', 'Cardiff City'),
+        ('Carlisle United', 'Carlisle United'),
+        ('Charlton Athletic', 'Charlton Athletic'),
         ('Chelsea', 'Chelsea'),
-        ('Palace', 'Crystal Palace'),
+        ('Cheltenham Town', 'Cheltenham Town'),
+        ('Coventry City', 'Coventry City'),
+        ('Crystal Palace', 'Crystal Palace'),
+        ('Derby County', 'Derby County'),
+        ('Exeter City', 'Exeter City'),
         ('Everton', 'Everton'),
-        ('Fulham', 'Fulham'),  
-        ('Ipswich', 'Ipswich'),
-        ('Leicester', 'Leicester City'),
-        ('Man City', 'Manchester City'), 
-        ('Man Utd', 'Manchester United'),
-        ('Newcastle', 'Newcastle'),
-        ('Forst', 'Nottingham Forest'),
-        ('SOuthmpton', 'Southampton'), 
-        ('Spurs', 'Tottenham Hotspur'),
-        ('West Ham', 'West Ham'),
-        ('Wolves', 'Wolverhampton Wanderers')
+        ('Fleetwood Town', 'Fleetwood Town'),
+        ('Fulham', 'Fulham'),
+        ('Huddersfield Town', 'Huddersfield Town'),
+        ('Hull City', 'Hull City'),
+        ('Ipswich Town', 'Ipswich Town'),
+        ('Leeds United', 'Leeds United'),
+        ('Leicester City', 'Leicester City'),
+        ('Leyton Orient', 'Leyton Orient'),
+        ('Lincoln City', 'Lincoln City'),
+        ('Liverpool', 'Liverpool'),
+        ('Luton Town', 'Luton Town'),
+        ('Manchester City', 'Manchester City'),
+        ('Manchester United', 'Manchester United'),
+        ('Middlesbrough', 'Middlesbrough'),
+        ('Millwall', 'Millwall'),
+        ('Newcastle United', 'Newcastle United'),
+        ('Northampton Town', 'Northampton Town'),
+        ('Norwich City', 'Norwich City'),
+        ('Nottingham Forest', 'Nottingham Forest'),
+        ('Oxford United', 'Oxford United'),
+        ('Peterborough United', 'Peterborough United'),
+        ('Plymouth Argyle', 'Plymouth Argyle'),
+        ('Port Vale', 'Port Vale'),
+        ('Portsmouth', 'Portsmouth'),
+        ('Preston North End', 'Preston North End'),
+        ('Queens Park Rangers', 'Queens Park Rangers'),
+        ('Reading', 'Reading'),
+        ('Rotherham United', 'Rotherham United'),
+        ('Sheffield United', 'Sheffield United'),
+        ('Sheffield Wednesday', 'Sheffield Wednesday'),
+        ('Shrewsbury Town', 'Shrewsbury Town'),
+        ('Southampton', 'Southampton'),
+        ('Stevenage', 'Stevenage'),
+        ('Stoke City', 'Stoke City'),
+        ('Sunderland', 'Sunderland'),
+        ('Swansea City', 'Swansea City'),
+        ('Tottenham Hotspur', 'Tottenham Hotspur'),
+        ('Watford', 'Watford'),
+        ('West Bromwich Albion', 'West Bromwich Albion'),
+        ('West Ham United', 'West Ham United'),
+        ('Wigan Athletic', 'Wigan Athletic'),
+        ('Wolverhampton Wanderers', 'Wolverhampton Wanderers'),
     )
 
     ReviewChoices = (
@@ -37,7 +83,7 @@ class Review(models.Model):
         ('D', 'Outstanding')
     )
 
-    ResultChoices= (
+    ResultChoices = (
         ('A', 'Win'),
         ('B', 'Draw'),
         ('C', 'Lose'),
@@ -51,8 +97,8 @@ class Review(models.Model):
     location_rating = models.CharField(max_length=12, default='B', choices=ReviewChoices)
     atmosphere_rating = models.CharField(max_length=12, default='B', choices=ReviewChoices)
     facilities_rating = models.CharField(max_length=12, default='B', choices=ReviewChoices)
-    catering_rating =  models.CharField(max_length=12, default='B', choices=ReviewChoices)
-    overall_rating =  models.CharField(max_length=12, default='B', choices=ReviewChoices)
+    catering_rating = models.CharField(max_length=12, default='B', choices=ReviewChoices)
+    overall_rating = models.CharField(max_length=12, default='B', choices=ReviewChoices)
     comments = models.TextField(blank=True)
 
 

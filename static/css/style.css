@@ -1,10 +1,10 @@
 body {
-    background-color: #009933;
+  background-color: #29a329;
 }
 
 
 
-.footer {
+.main_footer {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -21,3 +21,5 @@ body {
     font-size: 1.4rem;
   
   }
+
+

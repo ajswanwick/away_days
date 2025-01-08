@@ -43,7 +43,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.herokuapp.com'
     ]
 
-
+LOGIN_REDIRECT_URL = '/reviews/' 
 # Application definition
 
 INSTALLED_APPS = [
@@ -74,7 +74,7 @@ ROOT_URLCONF = 'away_days.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
