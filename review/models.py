@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Review(models.Model):
     
     TeamsChoices = (
-         ('Arsenal', 'Arsenal'),
+        ('Arsenal', 'Arsenal'),
         ('Aston Villa', 'Aston Villa'),
         ('Barnsley', 'Barnsley'),
         ('Birmingham City', 'Birmingham City'),
