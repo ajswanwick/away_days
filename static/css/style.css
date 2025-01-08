@@ -1,5 +1,7 @@
 body {
   background-color: #29a329;
+
+ 
 }
 
 
@@ -46,4 +48,16 @@ body {
 
 #id_password.form-control{
   width: 100%
+
 }
+
+img{
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+
+
+  
+ 
+ 
