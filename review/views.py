@@ -66,6 +66,7 @@ def review_create(request):
             review = form.save(commit=False)
             review.user = request.user  # Set the current user
             review.save()
+           
             return redirect('review_list')  # Redirect to the list view after saving
     else:
         form = ReviewForm()

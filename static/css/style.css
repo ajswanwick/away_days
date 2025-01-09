@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
 background-image: url('/static/media/images/pitch.jpeg');
-background-repeat: no-repeat;
+background-repeat: repeat;
 background-size: cover;
-height: 100%;
+height:100vh;
 background-position: center;
 width: 100%;
 
@@ -111,4 +112,32 @@ ul{
   border-radius: 15px;
 
   color: black
+}
+
+@media (max-width: 810px){
+
+
+.body{
+  height: 100vh;
+}
+
+  .home-page{
+   font-size: 120px;  
+  text-align: center;
+  }
+  
+  .blurb{
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Luckiest Guy', sans-serif;
+    color: #fff;
+  }
+
+  .log-message{
+    justify-self: center;
+    background-color: transparent;
+    color: #fff;
+    font-family: 'Sriracha', sans-serif;
+    font-weight: bold;
+  }
 }

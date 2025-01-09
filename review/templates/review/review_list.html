@@ -15,7 +15,7 @@
     <!-- Display Add Review button only if user is authenticated -->
     {% if user.is_authenticated %}
         <div class="mb-3 text-end">
-            <a href="{% url 'review_create' %}" class="btn btn-primary">Add Review</a>
+            <a href="{% url 'review_create' %}" class="btn btn-warning">Add Review</a>
         </div>
     {% endif %}
 
