@@ -13,22 +13,39 @@
             <a class="navbar-brand" href="/">Home</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/reviews">Reviews</a></li>
                     {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'review_create' %}">Create Review</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/reviews">Reviews</a></li>
+                          
+                       
+                        
                         
                     {% else %}
                         <li class="nav-item">
                             <button type="button" class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                         
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+                           
                         </li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
+        {% if user.is_authenticated %}
+        <div class = "log-message">
+            <span class="log-message"><h6>You are logged in as {{ user.username }}</h6></span>
+            {%endif%}
+        </div>
     </header>
+
+   
+
+    
+
+
 
     <main class="container mt-4">
         {% block content %}{% endblock %}
@@ -60,6 +77,9 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
+                <div class="modal-footer">
+                    <p>Don't have an account? <a href="{% url 'register' %}">Join here</a></p>
+                </div>
             </div>
         </div>
     </div>
@@ -69,14 +89,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                    <h5 class="modal-title" id="registerModalLabel">Click to Join Our Club</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="{% url 'register' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">Join Us</button>
                     </form>
                 </div>
             </div>

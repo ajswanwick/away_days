@@ -21,6 +21,7 @@ from django.urls import path, include
 urlpatterns = [
    path('admin/', admin.site.urls),
    path('auth/', include('review.urls')),
+   path('accounts/', include('django.contrib.auth.urls')),  # Includes login, logout, etc.
    path('', include('review.urls'), name='home'),
 
 ]

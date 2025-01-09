@@ -1,68 +1,120 @@
 {% extends 'base.html' %}
-{% block title%}Reviews{%endblock%}
+{% block title %}Reviews{% endblock %}
 
 {% block content %}
-    <div class="container mt-4">
-        <h1 class="mb-4">Review List</h1>
+<div class="container mt-4">
+    <h1 class="review-list mb-4">Away Reviews</h1>
 
-        <div class="mb-3 text-end">
-            <a href="{% url 'review_create' %}" class=" review_btn btn btn-primary">Add Review</a>
+    <!-- Display message if user is not authenticated -->
+    {% if not user.is_authenticated %}
+        <div class="alert alert-warning" role="alert">
+            You need to be a registered user to add a review.
         </div>
-        {% if reviews %}
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>User</th>
-                    <th>Team Visited</th>
-                    <th>Visit Date</th>
-                    <th>Final Score</th>
-                    <th>Result</th>
-                    <th>Location Rating</th>
-                    <th>Atmosphere Rating</th>
-                    <th>Facilities Rating</th>
-                    <th>Catering Rating</th>
-                    <th>Overall Rating</th>
-                    <th>Comments</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for review in reviews %}
-                    <tr>
-                        <td>{{ review.user.username }}</td>
-                        <td>{{ review.team_visited }}</td>
-                        <td>{{ review.visit_date }}</td>
-                        <td>{{ review.final_score }}</td>
-                        <td>{{ review.get_result_display }}</td>
-                        <td>{{ review.get_location_rating_display }}</td>
-                        <td>{{ review.get_atmosphere_rating_display }}</td>
-                        <td>{{ review.get_facilities_rating_display }}</td>
-                        <td>{{ review.get_catering_rating_display }}</td>
-                        <td>{{ review.get_overall_rating_display }}</td>
-                        <td><div class="comment-box">
-                            <span class="comment-preview">
-                                {{ review.comments|slice:":100" }}{% if review.comments|length > 100 %}...{% endif %}
-                            </span>
-                            {% if review.comments|length > 100 %}
-                                <span class="comment-full d-none">{{ review.comments }}</span>
-                                <button class="btn btn-link btn-sm toggle-comment">Click for more</button>
-                            {% endif %}
-                        </div>
-                    </td>
-                   
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="11" class="text-center">No reviews available</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
+    {% endif %}
+
+    <!-- Display Add Review button only if user is authenticated -->
+    {% if user.is_authenticated %}
+        <div class="mb-3 text-end">
+            <a href="{% url 'review_create' %}" class="btn btn-primary">Add Review</a>
+        </div>
+    {% endif %}
+
+    {% if reviews %}
+    <div class="row">
+        {% for review in reviews %}
+        <div class="col-md-4 mb-4">
+            <!-- Review Card -->
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">{{ review.team_visited }} Away</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">By {{ review.user.username }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ review.my_team }} fan</h6>
+
+                    <p class="card-text">
+                        <strong>Visit Date:</strong> {{ review.visit_date }} <br>
+                        <strong>Score:</strong> {{ review.final_score }} <br>
+                        <strong>Result:</strong> {{ review.get_result_display }} <br>
+                        <strong>Location Rating:</strong> {{ review.get_location_rating_display }} <br>
+                        <strong>Atmosphere Rating:</strong> {{ review.get_atmosphere_rating_display }} <br>
+                        <strong>Facilities Rating:</strong> {{ review.get_facilities_rating_display }} <br>
+                        <strong>Catering Rating:</strong> {{ review.get_catering_rating_display }} <br>
+                        <strong>Overall Rating:</strong> {{ review.get_overall_rating_display }} <br>
+                    </p>
+
+                    <div class="review-comments">
+                        <p class="card-text" id="comments-{{ review.pk }}">
+                            {{ review.comments|slice:":100" }}{% if review.comments|length > 100 %}...{% endif %}
+                        </p>
+                        {% if review.comments|length > 100 %}
+                            <a href="javascript:void(0);" id="toggle-btn-{{ review.pk }}" onclick="toggleComments('{{ review.pk }}')" class="card-link">Click for more</a>
+                            <div id="full-comments-{{ review.pk }}" style="display:none;">
+                                <p>{{ review.comments }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Actions: Edit and Delete -->
+                    {% if user.is_authenticated %}
+                        {% if review.user == user %}
+                            <a href="{% url 'review_update' review.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ review.pk }}">Delete</button>
+                        {% endif %}
+                    {% else %}
+                        <!-- If user is not authenticated, show a login prompt -->
+                        <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login to Edit/Delete</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div class="modal fade" id="deleteModal-{{ review.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this review of <strong>{{ review.team_visited }}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form action="{% url 'review_delete' review.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
     <p>No reviews found. Click "Add Review" to create your first review.</p>
     {% endif %}
-    </div>
+</div>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-{% endblock content %}
+<!-- JavaScript to Toggle Comments -->
+<script>
+    function toggleComments(reviewId) {
+        var commentsSection = document.getElementById('full-comments-' + reviewId);
+        var shortComments = document.getElementById('comments-' + reviewId);
+        var toggleBtn = document.getElementById('toggle-btn-' + reviewId);
+
+        if (commentsSection.style.display === "none") {
+            commentsSection.style.display = "block";
+            shortComments.style.display = "none";
+            toggleBtn.textContent = "Click for less";
+        } else {
+            commentsSection.style.display = "none";
+            shortComments.style.display = "block";
+            toggleBtn.textContent = "Click for more";
+        }
+    }
+</script>
+
+{% endblock %}

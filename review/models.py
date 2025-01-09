@@ -90,6 +90,7 @@ class Review(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='review')
+    my_team = models.CharField(max_length=30, default='ARS', choices=TeamsChoices)
     team_visited = models.CharField(max_length=30, default='ARS', choices=TeamsChoices)
     visit_date = models.DateField()
     final_score = models.CharField(max_length=10,)

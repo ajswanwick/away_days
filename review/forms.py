@@ -27,6 +27,7 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = [
+            'my_team',
             'team_visited',
             'visit_date',
             'final_score',
