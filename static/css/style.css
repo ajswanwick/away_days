@@ -221,6 +221,14 @@ font-family: 'Luckiest Guy', sans-serif;
     font-weight: bold;
     
   }
+
+  input#id_username{
+    margin-left: 0px;
+  }
+  
+  input#id_password{
+    margin-left: 0px;
+  }
 }
 
 
