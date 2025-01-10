@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth import authenticate, login, logout
 from .models import Review
 from .forms import ReviewForm
 from django.contrib.auth.decorators import login_required
@@ -12,18 +12,13 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 
-
+# --------Home View ------------
 class HomePage(TemplateView):
-    """
-    Displays home page"
-    """
-    template_name = 'home.html'
+  template_name = 'home.html'
 
-# Create your views here.
+
+# ---------Login view --------------
 def login_view(request):
-    """
-    Custom login view
-    """
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -37,6 +32,7 @@ def login_view(request):
     return render(request, 'registration/login.html')
 
 
+# -------------Register View ---------------
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -52,12 +48,16 @@ def register(request):
     
     return render(request, 'registration/register.html', {'form': form})
 
+
+# -------------List View ------------------
 def review_list(request):
     reviews = Review.objects.all()  # Fetch all reviews
     context = {'reviews': reviews}
     return render(request, 'review/review_list.html', context)
 
 
+
+#---------Create a Review ---------------
 @login_required(login_url='login') 
 def review_create(request):
     if request.method == 'POST':
@@ -74,6 +74,7 @@ def review_create(request):
     return render(request, 'review/review_form.html', {'form': form})
 
 
+# -----------Update a Review-----------
 @login_required(login_url='login')  # Redirect to login if not authenticated
 def review_update(request, pk):
     review = get_object_or_404(Review, pk=pk)
@@ -90,6 +91,8 @@ def review_update(request, pk):
         form = ReviewForm(instance=review)
     return render(request, 'review/review_form.html', {'form': form})
 
+
+# ---------- Delete Review --------------
 @login_required(login_url='login')  # Redirect to login if not authenticated
 def review_delete(request, pk):
     review = get_object_or_404(Review, pk=pk)

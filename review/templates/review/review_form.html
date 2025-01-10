@@ -4,9 +4,9 @@
 
 {% block content %}
 
-
-    <div class="container mt-5">
-        <h1 class="mb-4">Create a New Review</h1>
+  <!--Form Content-->
+    <div class="review-form container mt-5">
+        <h1 class="review-header mb-4">Create a New Review</h1>
         <form method="POST" class="needs-validation" novalidate>
             {% csrf_token %}
             {{ form.as_p }}
