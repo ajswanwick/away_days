@@ -43,4 +43,3 @@ class ReviewForm(forms.ModelForm):
             'visit_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'comments': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
         }
-
