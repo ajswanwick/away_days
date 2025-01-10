@@ -161,13 +161,17 @@ font-family: 'Luckiest Guy', sans-serif;
 
 /*Review Form--------------------*/
 
-
+.review-form{
+  background-color: #fff;
+  width: fit-content;
+}
 
 
 .review-header{
   font-family: 'Luckiest Guy', sans-serif;
-  color: #fff;
-  -webkit-text-stroke: 2px black;
+  color: black;
+  text-align: center;
+  
 }
 
 .review-form p{
@@ -229,6 +233,8 @@ font-family: 'Luckiest Guy', sans-serif;
   input#id_password{
     margin-left: 0px;
   }
+
+  
 }
 
 
