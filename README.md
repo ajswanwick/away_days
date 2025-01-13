@@ -35,6 +35,19 @@ users can register, once registered users will be able to create, update and del
 - [Version Control](#version-control)
 - [Design Tools](#design-tools)
 - [Testing](#testing)
+  - [Validation Testing](#validation-testing)
+    - [HTML](#html)
+    - [CSS](#css)
+    - [Python Linter](#python-linter)
+    - [Lighthouse](#lighthouse)
+    - [User Testing](#user-testing)
+- [Bugs and Fixes](#bugs-and-fixes)
+- [Deployment](#deployment)
+  - [Security](#security)
+  - [Deploying through Heroku](#deploying-through-heroku)
+- [Credits](#credits)
+- [Thank You's](#thank-yous)
+    
   
  # User experience (ux)
  The idea for Away Days was for football fans to haver a specific place to share and post their reviews reagrding their experiences, The greater idea was to have this initial idea and to grow it into a communicty or social media page. I wanted the page to be light, and simple in design making it easy to navigate
@@ -147,6 +160,7 @@ I will also add an image upload section, This will enable users to add an image 
  - ChatGPT - for Image creation 
   
 # Testing
+
 ## Validation Testing 
 All of the code has been validated and tested through various means and measures
 
