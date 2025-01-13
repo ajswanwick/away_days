@@ -53,7 +53,7 @@ def review_list(request):
 
 
 # ---------Create a Review ---------------
-@login_required(login_url='login') 
+@login_required(login_url='login')
 def review_create(request):
     if request.method == 'POST':
         form = ReviewForm(request.POST)

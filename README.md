@@ -110,8 +110,10 @@ Wireframes were made using balsamiq.
 This shows the image of a registered user, able to create a review
 
 ## CRUD Functoinality
-Non Registerd users can acees the site and can read Reviews, Users are able to register and then login with their details, once logged in Users can create new Reviews, They can also Updte their own reviews and also delete the reviews completely 
 ![CRUD](/static/media/images/CRUD.png)
+
+Non Registerd users can acees the site and can read Reviews, Users are able to register and then login with their details, once logged in Users can create new Reviews, They can also Updte their own reviews and also delete the reviews completely 
+
 
 ## Future Features
 There are some features that are planned for future updates
@@ -145,14 +147,102 @@ I will also add an image upload section, This will enable users to add an image 
  - ChatGPT - for Image creation 
   
 # Testing
+## Validation Testing 
+All of the code has been validated and tested through various means and measures
 
+### HTML
+- HTML Code was validated through the W3C mark up validator, the source code from the live web page was used to validate , there are just 2 JavaScript Warnings.
+![HTML Validation](/static/media/images/HTML_Valid.png)
+
+### CSS
+- CSS Validation was validated through W3C CSS Validator
+no errors where shown in the CSS validation
+![CSS Validation](/static/media/images/CSS_Valid.png)
+
+### Python Linter
+- Python Linter was used to check the Python Code in the following files:
+  - Models.py
+   ![Models](/static/media/images/modelspy.png)
+  - Forms.py 
+   ![Forms](/static/media/images/formspy.png)
+  - Views.py 
+   ![Views](/static/media/images/viewspy.png) 
+   
+ Only Errors withincode spaces where Line Length Errors - I have decided to leave these errors in for readability, no other errors were documented through the Linters.
   
+### Lighthouse
+The Webpage was tested through the Lighthouse feature in Chrome Dev Tools, with the results documented below:
+ - Desktop 
+ ![Desktop](/static/media/images/desktop.png)
+ - Mobile
+ ![Mobile](/static/media/images/mobile.png)
+
+ ### User Testing
+  - Responsiveness: The Website has been tested on mobile tablet and Desktop, 
+  media querys were added to the CSS file to ensure responsiveness and changes were made when initially viewing on smaller screens
+  - The Heroku Link was sent to Mobile via a WhatsApp Link in order to be able to test mobile functionality
+  ![Whattsap](/static/media/images/Whatsapp.png)
+
+  - User Testing: Has been carried out to ensure the site performs as intended, Registered users can create, edit and delete forms, nonregistered users can only view. New users are registered as intended to the database. The logic was thouroughly tested to ensure functionality was as intended. I have had family members test the site along with Kevin(Code institute), I have added a screen shot from the feedback i received from Kevin, which also highlights some errors whih were fixed during The validation process and some UX features which i changed based on Kevins feedback 
+  ![Kevin](/static/media/images/Kevin.png)
+
+# Bugs and Fixes
+ - Bug Fix #1: Users Could Register But not Login:
+
+ New Users could register but could not login, This was casued by using custom login rather than using allAuth, This was resolved by adding a login function and created a login view, this corrected the issue and new users can now login and register. 
+
+ - Bug Fix 2: Responsiveness and UX Design:
+ In my original design, user reviews were displayed in a Table, which looked Good on desktop and larger screens, however on smaller screens, the table would expand past the users view and would cause horizontal scrolling, also in table form the readability was poor, This was chaged to using Cards (Bootsrap) This gives a visually better view and also on mobile screens the reviews fit the screen, for a better ux experience
+
+ - Bug Fix 3: UX Design:
+ Background Image Tiling - in my inital project the main background image was tiled vertically so the image would repeat when scrolling, however as the background is an image of a football field, when viewed the images didnt stack well and caused some contrast issues. this was fixed by having setting the background color to a close match to the bottom color of the image, which means the image blends into the background, 
+
+ - Bug Fix 4: Nav Bar
+ On smaller screens the navbar content disappeared, this was resolved by creating a bar menu dropdown in order to use the navigation items
+
+ - Bug Fix 5: Comment Cards:
+ When a user created a Review and left comments this made the cards different sizes due to the amount of text, This was resolved bv setting a character limit and by adding a click for more link to expand to read the complete review
+
+ # Deployment 
+ The code was written in GitPod, GitHub was used for vesrsion control and Deployed through Heroku.
+
+ To ensure a successful deployment to Heroku, the following practices are to be followed (Experience from previous Django projects):
+
+- Requirements File:** The `requirements.txt` file must be kept up to date to ensure all imported Python modules are configured correctly for Heroku.
+- Procfile: A `Procfile` was added to configure the application as a Gunicorn web app on Heroku.
+- Allowed Hosts: In `settings.py`, the `ALLOWED_HOSTS` list was configured to include the Heroku app name and `localhost`.
+
+## Security
+- Environment Variables:All sensitive data such as the `DATABASE_URL`, `CLOUDINARY_URL`, and `SECRET_KEY` were added to the `.env` file, which is ignored by Git using `.gitignore`. These variables are added to Heroku manually through the Config Vars section.
+
+## Deploying through Heroku
+
+ - Create New App: Log in to your Heroku account and click on the "Create New App" button.
+- App Name: Choose a unique name for your app.(Away-Days)
+- Select Region: Choose the appropriate region (Europe)
+- Create App: Click the "Create App" button to proceed.
+- Deployment Method:In Select GitHub as the deployment method.
+- Connect to Your GitHub: Search for the Project repository name and click "Connect".
+- Manual or Automatic Deployment: Select either manual or automatic deployment. Ensure the main branch is selected for deployment. I selected manual deployment for this project
+- Config Vars: In the "Settings" tab, click "Reveal Config Vars" and input the required environment variables.
+- Deploy: Once the configuration is complete, click the "Deploy Branch" button. After successful deployment, open the app through Heroku
+- Once sucessfully Deployed you can connect to the site either through heroku or by the Heroku Url: https://awaydays-f87f2c3f3546.herokuapp.com/
+
+# Credits
+ - FreePik was used to generate background images 
+ - Favicon.io used to gnerate the favicon
+ - Google fonts for Font Styling 
+ - W3 Schools for Coding Solutions 
+ - Stack Overflow For Coding Solutoins
+ - geeksforgeeks for coding Solutions
+ - ChatGPT - For Some coding Assistance and Problem Solving
+
+ # Thank You's 
+ - Kevin Loughrey - Code Institute for Coding Assistance and Guidance
+ - John Rearden - Code Institute For Coding Assistance and Guidance
+ - Paul - Code institue (Our Facilitator) For Coding Assistance and Guidance
+
+ I would like to thank you all for all of your help and guidance throughout this project. 
 
 
-
-
-
-
-
- 
- 
+**I would Also like to thank my family for their support and (assistance in testing) throughout this project, None of this would be possible without your support**

@@ -33,7 +33,7 @@ AUTHENTICATION_BACKENDS = [
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
      '8000-ajswanwick-awaydays-hbn6r5x9z71.ws.codeinstitute-ide.net',

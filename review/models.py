@@ -102,7 +102,6 @@ class Review(models.Model):
     overall_rating = models.CharField(max_length=12, default='B', choices=ReviewChoices)
     comments = models.TextField(blank=True)
 
-
     def __str__(self):
-       return f"{self.team_visited} away,  reviewed by {self.user}"
+        return f"{self.team_visited} away,  reviewed by {self.user}"
 
